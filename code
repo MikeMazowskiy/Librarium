@@ -1,0 +1,99 @@
+# app/models/book.rb
+class Book < ApplicationRecord
+  belongs_to :profile
+  has_and_belongs_to_many :tags
+  belongs_to :author
+  validates :title, presence: true
+end
+
+# app/models/user.rb
+class User < ApplicationRecord
+  has_one :profile
+end
+
+# app/models/profile.rb
+class Profile < ApplicationRecord
+  belongs_to :user
+  has_many :books
+end
+
+# app/models/tag.rb
+class Tag < ApplicationRecord
+  has_and_belongs_to_many :books
+end
+
+# app/models/author.rb
+class Author < ApplicationRecord
+  has_many :books
+end
+
+# app/controllers/profiles_controller.rb
+class ProfilesController < ApplicationController
+  before_action :authenticate_user!
+
+  def show
+    @profile = current_user.profile
+  end
+
+  def new
+    @profile = Profile.new
+  end
+
+  def create
+    @profile = current_user.build_profile(profile_params)
+
+    if @profile.save
+      redirect_to @profile
+    else
+      render :new
+    end
+  end
+
+  private
+
+  def profile_params
+    params.require(:profile).permit(:first_name, :last_name)
+  end
+end
+
+# app/controllers/books_controller.rb
+class BooksController < ApplicationController
+  before_action :authenticate_user!
+
+  def new
+    @book = Book.new
+  end
+
+  def create
+    @profile = current_user.profile
+    @book = @profile.books.build(book_params)
+
+    if @book.save
+      redirect_to @book
+    else
+      render :new
+    end
+  end
+
+  def index
+    if params[:tag].present?
+      @books = Book.joins(:tags).where(tags: { name: params[:tag] })
+    elsif params[:author].present?
+      @books = Book.where(author: params[:author])
+    else
+      @books = Book.all
+    end
+  end
+
+  private
+
+  def book_params
+    params.require(:book).permit(:title, :author_id, tag_ids: [])
+  end
+end
+
+# config/routes.rb
+Rails.application.routes.draw do
+  resources :profiles, only: [:show, :new, :create]
+  resources :books
+end
