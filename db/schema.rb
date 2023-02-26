@@ -10,16 +10,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_04_180132) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_26_142712) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "books", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "title", null: false
+    t.string "genre", null: false
+    t.integer "pages", null: false
+    t.integer "year_of_publishing", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "books_profiles", force: :cascade do |t|
+    t.uuid "profile_id", null: false
+    t.uuid "book_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_books_profiles_on_book_id"
+    t.index ["profile_id"], name: "index_books_profiles_on_profile_id"
+  end
+
   create_table "profiles", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "nickname"
+    t.string "nickname", null: false
     t.string "firstname"
     t.string "lastname"
     t.integer "age"
-    t.bigint "user_id"
+    t.uuid "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_profiles_on_user_id"
@@ -31,4 +49,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_04_180132) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "books_profiles", "books", on_delete: :cascade
+  add_foreign_key "books_profiles", "profiles", on_delete: :cascade
 end
