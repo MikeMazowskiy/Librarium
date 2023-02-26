@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_26_175107) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_26_180107) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -41,6 +41,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_26_175107) do
     t.index ["profile_id"], name: "index_books_profiles_on_profile_id"
   end
 
+  create_table "books_tags", id: false, force: :cascade do |t|
+    t.uuid "tag_id", null: false
+    t.uuid "book_id", null: false
+  end
+
   create_table "profiles", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "nickname", null: false
     t.string "firstname"
@@ -50,6 +55,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_26_175107) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
+
+  create_table "tags", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
