@@ -7,9 +7,10 @@ group :development, :test do
   gem 'pry'
   gem 'rspec'
   gem 'rspec-rails'
-  gem 'factory_bot'
+  gem 'factory_bot_rails'
   gem 'capybara'
   gem 'database_cleaner'
+  gem 'shoulda-matchers', '~> 5.0'
 end
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
