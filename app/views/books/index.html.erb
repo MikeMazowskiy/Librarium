@@ -1,0 +1,13 @@
+<h3> Books </h3>
+
+<button> <%= link_to "Add book", new_book_path(@collection)  %> </button>
+<div>
+  <hr>
+  <% @collections.each do |book| %>
+    <p>Title: <%= link_to(book.title, book_path(book)) %> </p>
+    <p>Genre: <%= link_to(book.genre, book_path(book)) %> </p>
+    <p>Pages: <%= link_to(book.pages, book_path(book)) %> </p>
+    <hr>
+  <% end %>
+
+</div>

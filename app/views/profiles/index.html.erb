@@ -1,0 +1,7 @@
+<h3> Profiles </h3>
+
+<div>
+  <% @collections.each do |profile| %>
+    <p>Nickname: <%= link_to(profile.nickname, profile_path(profile)) %> </p>
+  <% end %>
+</div>
