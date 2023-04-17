@@ -1,0 +1,10 @@
+<h3> Book </h3>
+
+<div>
+  <p> Title: <%= @collection.title %> </p>
+  <p> Genre: <%= @collection.genre %> </p>
+  <p> Pages num: <%= @collection.pages %> </p>
+  <p> Year of publishing: <%= @collection.year_of_publishing %> </p>
+  <p> Author: <%= @collection.author.firstname %> </p>
+  <button> <%= link_to "EDIT", edit_book_path(@collection)  %> </button>
+</div>

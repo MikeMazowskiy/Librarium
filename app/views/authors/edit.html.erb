@@ -1,0 +1,10 @@
+<h1>Edit Author</h1>
+
+<div>
+  <%= form_with model: @collection, url: author_path(@collection), method: :patch, local: true do |f| %>
+    <p> First name: <%= f.text_field :firstname %> </p>
+    <p> Last name: <%= f.text_field :lastname %> </p>
+    <%= f.submit %>
+  <% end %>
+  <%= button_to "Delete", author_path(@collection), method: :delete, local: true  %>
+</div>

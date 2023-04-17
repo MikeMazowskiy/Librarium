@@ -1,0 +1,9 @@
+<h3> Profile </h3>
+
+<div>
+  <p> Nickname: <%= @collection.nickname %> </p>
+  <p> First name: <%= @collection.firstname %> </p>
+  <p> Last name: <%= @collection.lastname %> </p>
+  <p> Age: <%= @collection.age %> </p>
+  <button> <%= link_to "EDIT", edit_profile_path(@collection)  %> </button>
+</div>
