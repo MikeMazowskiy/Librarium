@@ -11,8 +11,14 @@ group :development, :test do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'shoulda-matchers', '~> 5.0'
+  gem 'pry-nav'
 end
 
+gem 'simple_form'
+gem "tailwindcss-rails", "~> 2.0"
+gem 'webpacker', '~> 5.0'
+gem 'avatarro'
+gem 'high_voltage', '~> 3.1'
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4", ">= 7.0.4.2"
 
