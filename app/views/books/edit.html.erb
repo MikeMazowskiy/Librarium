@@ -1,13 +1,1 @@
-<h1>Edit book</h1>
-
-<div>
-  <%= form_for @collection, url: book_path(@collection), local: true do |f| %>
-    <p> Title: <%= f.text_field :title %> </p>
-    <p> Genre: <%= f.text_field :genre %> </p>
-    <p> Pages num: <%= f.text_field :pages %> </p>
-    <p> Year of publishing: <%= f.text_field :year_of_publishing %> </p>
-    <p> Author: <%= f.collection_select :author_id, Author.all, :id, :lastname, prompt: true %> </p>
-    <%= f.submit %>
-  <% end %>
-  <%= button_to "Delete", book_path(@collection), method: :delete, local: true  %>
-</div>
+<%= render 'form', collection: @collection %>

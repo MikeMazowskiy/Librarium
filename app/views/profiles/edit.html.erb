@@ -1,11 +1,1 @@
-<h1>Edit Profile</h1>
-
-<div>
-  <%= form_with model: @collection, url: profile_path(@collection), method: :patch, local: true do |f| %>
-    <p> Nickname: <%= f.text_field :nickname %> </p>
-    <p> First name: <%= f.text_field :firstname %> </p>
-    <p> Last name: <%= f.text_field :lastname %> </p>
-    <p> Age: <%= f.text_field :age %> </p>
-    <%= f.submit %>
-  <% end %>
-</div>
+<%= render 'form', collection: @collection %>

@@ -1,8 +1,22 @@
-<h3> Authors </h3>
+<h1 class="text-3xl font-semibold text-gray-800 capitalize lg:text-4xl dark:text-dark">Authors</h1>
 
-<button> <%= link_to "Add author", new_author_path(@collection)  %> </button>
-<div>
-  <% @collections.each do |author| %>
-    <p>Full name: <%= link_to("#{author.firstname} #{author.lastname}", edit_author_path(author)) %> </p>
-  <% end %>
+<div class="bg-white py-24 sm:py-32">
+  <div class="mx-auto grid max-w-7xl gap-x-8 gap-y-20 px-6 lg:px-8 xl:grid-cols-3">
+    <% @collections.each do |author| %>
+      <ul role="list" class="grid gap-x-8 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2">
+        <li>
+          <div class="flex items-center gap-x-4">
+            <div>
+              <h3 class="text-base font-semibold leading-7 tracking-tight text-gray-900"><%= link_to(author.firstname, edit_author_path(author)) %></h3>
+              <p class="text-sm font-semibold leading-6 text-indigo-600">Co-Founder / CEO</p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    <% end %>
+  </div>
+  <br>
+  <button class="hover:shadow-form rounded-md bg-[#3944BC] py-3 px-8 text-base font-semibold text-white outline-none">
+    <%= link_to "Add new author", new_author_path(@collection) %>
+  </button>
 </div>
