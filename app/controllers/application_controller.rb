@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-
   def index
     if class_name == "User"
       raise "Not implemented error"

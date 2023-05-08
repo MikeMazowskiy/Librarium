@@ -1,4 +1,6 @@
 class ProfilesController < ApplicationController
+  before_action :authenticated_user?, only: %i[edit update destroy]
+
   def show
     @collection = Profile.find(params[:id])
   end
@@ -15,5 +17,9 @@ class ProfilesController < ApplicationController
 
   def edit_resource_path
     edit_profile_path
+  end
+
+  def authenticated_user?
+    authorize @collection
   end
 end
