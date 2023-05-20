@@ -4,7 +4,7 @@
   <%= form_for @collection, url: books_path, local: true do |f| %>
     <p> Title: <%= f.text_field :title %> </p>
     <p> Genre: <%= f.text_field :genre %> </p>
-    <p> Pages num: <%= f.text_field :pages %> </p>
+    <p> Description num: <%= f.text_field :description %> </p>
     <p> Year of publishing: <%= f.text_field :year_of_publishing %> </p>
     <p> Author: <%= f.collection_select :author_id, Author.all, :id, :lastname, prompt: true %> </p>
     <div class="text-center">
