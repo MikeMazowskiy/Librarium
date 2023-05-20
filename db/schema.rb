@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_26_180107) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_07_160650) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -29,7 +29,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_26_180107) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.uuid "author_id"
-    t.index ["author_id"], name: "books_on_author_id"
+    t.index ["author_id"], name: "index_books_on_author_id"
   end
 
   create_table "books_profiles", force: :cascade do |t|
@@ -37,8 +37,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_26_180107) do
     t.uuid "book_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["book_id"], name: "books_profiles_on_book_id"
-    t.index ["profile_id"], name: "books_profiles_on_profile_id"
+    t.index ["book_id"], name: "index_books_profiles_on_book_id"
+    t.index ["profile_id"], name: "index_books_profiles_on_profile_id"
   end
 
   create_table "books_tags", id: false, force: :cascade do |t|
@@ -54,7 +54,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_26_180107) do
     t.uuid "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "profiles_on_user_id"
+    t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
   create_table "tags", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -67,6 +67,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_26_180107) do
     t.string "email", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.string "provider", limit: 50, default: ""
+    t.string "uid", limit: 500, default: ""
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "books", "authors"

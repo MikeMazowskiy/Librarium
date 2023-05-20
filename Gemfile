@@ -12,6 +12,10 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'shoulda-matchers', '~> 5.0'
   gem 'pry-nav'
+  gem 'devise'
+  gem 'dotenv-rails'
+  gem 'omniauth-google-oauth2'
+  gem "omniauth-rails_csrf_protection", "~> 1.0"
 end
 
 gem 'simple_form'
