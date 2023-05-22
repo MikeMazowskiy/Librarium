@@ -5,7 +5,7 @@ class CreateLists < ActiveRecord::Migration[7.0]
 
       t.timestamps
     end
-  end
 
-  add_reference :books, :list, foreign_key: true, type: :uuid
+    add_reference :books, :list, foreign_key: true, type: :uuid
+  end
 end
