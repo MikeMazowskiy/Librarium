@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_20_051329) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_20_060104) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -29,7 +29,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_20_051329) do
     t.datetime "updated_at", null: false
     t.uuid "author_id"
     t.string "description"
+    t.uuid "list_id"
     t.index ["author_id"], name: "index_books_on_author_id"
+    t.index ["list_id"], name: "index_books_on_list_id"
   end
 
   create_table "books_profiles", force: :cascade do |t|
@@ -44,6 +46,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_20_051329) do
   create_table "books_tags", id: false, force: :cascade do |t|
     t.uuid "tag_id", null: false
     t.uuid "book_id", null: false
+  end
+
+  create_table "lists", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "profiles", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -78,6 +86,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_20_051329) do
   end
 
   add_foreign_key "books", "authors"
+  add_foreign_key "books", "lists"
   add_foreign_key "books_profiles", "books", on_delete: :cascade
   add_foreign_key "books_profiles", "profiles", on_delete: :cascade
 end
