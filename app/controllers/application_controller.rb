@@ -1,4 +1,8 @@
 class ApplicationController < ActionController::Base
+  include Pundit
+
+  rescue_from Pundit::NotAuthorizedError, with: :not_allowed_to_update
+
   def index
     if class_name == "User"
       raise "Not implemented error"
@@ -93,4 +97,10 @@ class ApplicationController < ActionController::Base
   def class_name
     controller_path.classify
   end
+
+  def not_allowed_to_update
+    flash[:warning] = 'You are not authorized to perform this action.'
+    redirect_to(request.referer || profile_path)
+  end
+
 end

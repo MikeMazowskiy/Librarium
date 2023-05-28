@@ -21,8 +21,10 @@
           First name: <%= @collection.firstname %>
         </div>
       </div>
+    <% if policy(@collection).update? %>
       <button class="hover:shadow-form rounded-md bg-[#03C03C] py-3 px-8 text-base font-semibold text-white outline-none">
         <%= link_to "Edit", edit_profile_path(@collection) %>
       </button>
+    <% end %>
   </div>
 </div>
