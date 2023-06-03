@@ -16,6 +16,7 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'omniauth-google-oauth2'
   gem "omniauth-rails_csrf_protection", "~> 1.0"
+  gem 'pundit'
 end
 
 gem 'simple_form'

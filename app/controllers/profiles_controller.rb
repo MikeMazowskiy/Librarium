@@ -1,8 +1,13 @@
-class ProfilesController < ApplicationController
+class ProfilesController < AuthenticatedController
+  before_action :load_profile, only: %i[edit update destroy authenticated_user?]
   before_action :authenticated_user?, only: %i[edit update destroy]
 
   def show
-    @collection = Profile.find(params[:id])
+    if params[:id]
+      @collection = Profile.find(params[:id])
+    else
+      @collection = current_user.profile
+    end
   end
 
   private
@@ -21,5 +26,9 @@ class ProfilesController < ApplicationController
 
   def authenticated_user?
     authorize @collection
+  end
+
+  def load_profile
+    @collection = Profile.find(params[:id])
   end
 end

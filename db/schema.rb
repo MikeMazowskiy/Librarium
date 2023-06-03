@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_20_060104) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_22_054416) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -48,10 +48,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_20_060104) do
     t.uuid "book_id", null: false
   end
 
+  create_table "comments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.text "text"
+    t.uuid "review_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["review_id"], name: "index_comments_on_review_id"
+  end
+
   create_table "lists", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.uuid "profile_id"
+    t.index ["profile_id"], name: "index_lists_on_profile_id"
   end
 
   create_table "profiles", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -63,6 +73,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_20_060104) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
+
+  create_table "reviews", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.text "text"
+    t.uuid "profile_id"
+    t.uuid "book_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_reviews_on_book_id"
+    t.index ["profile_id"], name: "index_reviews_on_profile_id"
   end
 
   create_table "tags", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -89,4 +109,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_20_060104) do
   add_foreign_key "books", "lists"
   add_foreign_key "books_profiles", "books", on_delete: :cascade
   add_foreign_key "books_profiles", "profiles", on_delete: :cascade
+  add_foreign_key "comments", "reviews"
+  add_foreign_key "lists", "profiles"
+  add_foreign_key "reviews", "books"
+  add_foreign_key "reviews", "profiles"
 end
