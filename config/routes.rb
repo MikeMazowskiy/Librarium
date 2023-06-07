@@ -4,7 +4,16 @@ Rails.application.routes.draw do
   }
 
   resources :profiles
-  resources :books
+  resources :lists
   resources :authors
   resources :tags, only: %i[index]
+  resources :comments, only: [:show, :edit, :update, :destroy]
+
+  resources :books do
+    resources :reviews, only: [:index, :new, :create]
+  end
+
+  resources :reviews, only: [:show, :edit, :update, :destroy] do
+    resources :comments, only: [:index, :new, :create]
+  end
 end

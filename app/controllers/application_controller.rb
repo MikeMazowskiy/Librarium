@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   rescue_from Pundit::NotAuthorizedError, with: :not_allowed_to_update
 
   def index
-    if class_name == "User"
+    if %w[User, Comment].include?(class_name)
       raise "Not implemented error"
     else
       @collections = model_class.includes(included_collections).all
@@ -45,9 +45,9 @@ class ApplicationController < ActionController::Base
     end
 
     if collection.update permitted_params
-      redirect_to edit_resource_path, notice: "#{class_name} was successfully updated."
+      redirect_to resource_path, notice: "#{class_name} was successfully updated."
     else
-      redirect_to resource_path, notice: "Something went wrong."
+      redirect_to edit_resource_path, notice: "Something went wrong."
     end
   end
 

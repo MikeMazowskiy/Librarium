@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_22_054416) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_04_100007) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -53,6 +53,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_22_054416) do
     t.uuid "review_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.uuid "profile_id", null: false
+    t.index ["profile_id"], name: "index_comments_on_profile_id"
     t.index ["review_id"], name: "index_comments_on_review_id"
   end
 
@@ -109,6 +111,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_22_054416) do
   add_foreign_key "books", "lists"
   add_foreign_key "books_profiles", "books", on_delete: :cascade
   add_foreign_key "books_profiles", "profiles", on_delete: :cascade
+  add_foreign_key "comments", "profiles"
   add_foreign_key "comments", "reviews"
   add_foreign_key "lists", "profiles"
   add_foreign_key "reviews", "books"
