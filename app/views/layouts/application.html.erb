@@ -14,19 +14,10 @@
   </head>
 
   <body>
-  <%# if user_signed_in? %>
     <%= render 'layouts/header'%>
-  <%# else %>
-  <%# end %>
   </br>
-  <div>
-    <% flash.each do |key, message| %>
-      <p class="<%= key %>"><%= message %></p>
-    <% end %>
-  </div>
+    <%= render 'layouts/flash'%>
   <main class="container mx-auto mt-28 px-5 flex">
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
     <%= yield %>
   </main>
   <%= render 'layouts/footer'%>

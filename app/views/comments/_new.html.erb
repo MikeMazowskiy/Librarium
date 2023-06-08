@@ -1,0 +1,40 @@
+<p class="text-gray-700 font-medium "><b>Comments:</b></p>
+<div class="flex items-center justify-center p-12">
+  <div class="mx-auto w-full max-w-[550px]">
+    <% @collection.comments.each do |comment| %>
+      <div class="max-w-2xl mx">
+        <div class="flex items-center">
+        <%= link_to comment.profile.nickname, profile_path(comment.profile), class: 'font-bold hover:text-blue-600' %>
+        <p class="mt-5 ml-2"><%= comment.text %></p>
+
+        <button type="button" class="h-8 px-4 py-1 font-semibold rounded-xl bg-green-500 hover:bg-green-600 text-white text-center">
+          <%= link_to "Edit", comment_path(comment) %>
+        </button>
+      </div>
+<!--      <div class="card">-->
+<!--        <div class="row">-->
+<!--          <div class="user">-->
+<!--            <div class="avatar">-->
+              <%# if comment.profile.avatar.attached? %>
+                <%#= link_to user_path(comment.profile) do %>
+                  <%#= image_tag comment.profile.avatar %>
+                <%# end %>
+              <%# end %>
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+    <% end %>
+  </div>
+</div>
+    <%= simple_form_for([@collection, @collection.comments.build]) do |f| %>
+      <div class="mb-5 mt-6">
+        <label for="subject" class="mb-3 block text-base font-medium text-[#07074D]">
+          Description
+        </label>
+        <%= f.text_area :text,  label: false, required: true, class: "w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" %>
+      </div>
+      <div>
+        <%= f.button :submit, "Save", class: "hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-base font-semibold text-white outline-none" %>
+      </div>
+    <% end %>
+</div>

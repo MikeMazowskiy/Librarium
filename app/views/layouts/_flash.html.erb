@@ -1,0 +1,65 @@
+<%= turbo_frame_tag "flash" do %>
+  <div class="fixed inset-x-0 top-0 px-4 -mr-8 py-6 sm:p-6 pointer-events-none block" style="z-index: 10000;">
+    <div id="flash_container"  class="flex flex-col items-end space-y-4">
+      <% flash.each do |type, message| %>
+        <% if type == 'notice' %>
+          <div data-controller="alert" data-alert-dismiss-after-value="5000" data-alert-show-class="translate-x-0" data-alert-hide-class="translate-x-full -translate-y-full" class=" <%= tailwind_classes_for(type) %> ">
+            <div class="p-2">
+              <div class="flex items-start">
+                <div class="ml-5 w-0 flex-1 pt-0.5">
+                  <p class="text-sm leading-5 font-bold">
+                    <%= message %>
+                  </p>
+                </div>
+                <div class="ml-4 flex-shrink-0 flex">
+                  <button data-action="alert#close" class="inline-flex text-white focus:outline-none focus:text-gray-300">
+                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% elsif type == 'error' %>
+          <% message.each_with_index do |message, index| %>
+            <div data-controller="alert" data-alert-dismiss-after-value="<%=4000+(index*1000)%>" data-alert-show-delay-value="<%=index*300%>" data-alert-show-class="translate-x-0" data-alert-hide-class="translate-x-full -translate-y-full" class=" <%= tailwind_classes_for(type) %> ">
+              <div class="p-2">
+                <div class="flex items-start">
+                  <svg
+                    class="fill-current text-white-600 mr-2"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    height="24"
+                  >
+                    <path
+                      class="heroicon-ui"
+                      d="M12 2a10 10 0 1 1 0 20 10 10 0 0 1 0-20zm0 2a8 8 0 1 0 0 16 8 8 0 0 0 0-16zm0 9a1 1 0 0 1-1-1V8a1 1 0 0 1 2 0v4a1 1 0 0 1-1 1zm0 4a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"
+                      />
+                  </svg>
+                  <div class="w-0 flex-1">
+                    <p class="text-sm leading-5 font-bold">
+                      <% message.each do |msg| %>
+                      <li>
+                        <%= msg %>
+                      </li>
+                    <% end %>
+                    </p>
+                  </div>
+                  <div class="ml-4 flex-shrink-0 flex">
+                    <button data-action="alert#close" class="inline-flex text-white focus:outline-none focus:text-gray-300">
+                      <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

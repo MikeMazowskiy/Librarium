@@ -1,10 +1,52 @@
-<h3> Book </h3>
-
 <div>
-  <p> Title: <%= @collection.title %> </p>
-  <p> Genre: <%= @collection.genre %> </p>
-  <p> Description num: <%= @collection.description %> </p>
-  <p> Year of publishing: <%= @collection.year_of_publishing %> </p>
-  <p> Author: <%= @collection.author.firstname %> </p>
-  <button> <%= link_to "EDIT", edit_book_path(@collection)  %> </button>
+  <head>
+    <meta charset="UTF-8">
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/tailwindcss@2.0.1/dist/tailwind.min.css'>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,600;0,700;1,400&amp;display=swap'><link rel="stylesheet" href="./style.css">
+
+  </head>
+  <body class="antialiased">
+  <div class="py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
+      <div class="flex flex-col md:flex-row -mx-4">
+        <div class="px-4">
+            <div class="w-64 rounded-lg bg-gray-100 mb-4">
+              <img src="https://kbimages1-a.akamaihd.net/c9472126-7f96-402d-ba57-5ba4c0f4b238/1200/1200/False/nineteen-eighty-four-1984-george.jpg" alt="Front of men&#039;s Basic Tee in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+<!--              <div x-show="image === 2" class="h-64 md:h-80 rounded-lg bg-gray-100 mb-4 flex items-center justify-center">-->
+<!--                <span class="text-5xl">2</span>-->
+<!--              </div>-->
+
+<!--              <div x-show="image === 3" class="h-64 md:h-80 rounded-lg bg-gray-100 mb-4 flex items-center justify-center">-->
+<!--                <span class="text-5xl">3</span>-->
+<!--              </div>-->
+
+<!--              <div x-show="image === 4" class="h-64 md:h-80 rounded-lg bg-gray-100 mb-4 flex items-center justify-center">-->
+<!--                <span class="text-5xl">4</span>-->
+<!--              </div>-->
+            </div>
+        </div>
+        <div class="md:flex-1 px-4">
+          <h2 class="mb-2 leading-tight tracking-tight font-bold text-gray-800 text-2xl md:text-3xl"><%= @collection.title %></h2>
+          <p class="text-gray-500 text-sm">By <a href="#" class="text-indigo-600 hover:underline"><%= @collection.author.firstname %></a></p>
+
+          <div class="flex items-center space-x-4 my-4">
+            <%= @collection.genre %>
+            <%= @collection.year_of_publishing %>
+          </div>
+
+          <p class="text-gray-500"><%= @collection.description %></p>
+
+          <div class="flex py-4 space-x-4">
+            <button type="button" class="h-14 px-6 py-2 font-semibold rounded-xl bg-green-500 hover:bg-indigo-500 text-white">
+              <%= link_to "EDIT", edit_book_path(@collection) %>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="reviews">
+    <%= render partial: 'reviews/new'%>
+  </div>
+  </body>
 </div>
