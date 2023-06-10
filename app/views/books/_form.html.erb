@@ -1,39 +1,73 @@
 <div class="flex items-center justify-center p-12">
   <div class="mx-auto w-full max-w-[550px]">
     <%= simple_form_for @collection do |f| %>
+      <div class="min-h-80 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+        <% if @collection.image.present? %>
+          <label for='image-input'>
+            <%= image_tag @collection.image_url, class: "h-full w-full object-cover object-center lg:h-full lg:w-full" %>
+            <div class="opacity-0 hover:opacity-100 duration-300 cursor-pointer	">
+            </div>
+          </label>
+        <% else %>
+          <label for='image-input'>
+            <img src="https://m.media-amazon.com/images/I/61ibOuXLwcL._AC_UF1000,1000_QL80_.jpg" alt="Front of men&#039;s Basic Tee in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full overflow-hidden">
+          </label>
+        <% end %>
+        <%= f.input_field :image, class: 'hidden', accept: ".jpg, .jpeg, .png", id: 'image-input' %>
+        <div data-crop-target="container" data-action="click->crop#closeBackground keyup@window->crop#closeWithKeyboard" class="hidden animate-fade-in-down fixed inset-0 overflow-y-auto flex items-center justify-center px-4 md:px-6" style="z-index: 9999;">
+          <!-- Modal Inner Container -->
+          <div class="max-h-screen w-auto min-w-72 md:min-w-modalMd sm:min-w-modalSm max-w-screen-md relative shadow-lg">
+            <!-- Modal Card -->
+            <div class="bg-white rounded-lg shadow">
+              <div class="flex items-start justify-between pt-6 pr-6 rounded-t"></div>
+              <div class="px-9 mt-1 pb-6">
+                <div style="position: relative; max-height: 600px;">
+                  <img data-crop-target="output" id="image" width="100%" src="">
+                </div>
+                <div class="flex justify-between">
+                  <button type="button" class="base-48-round-btn gray-btn mt-8" data-action="click->crop#close">
+                    Отмена
+                  </button>
+                  <%= f.button :submit, class: 'base-48-round-btn orange-btn mt-8' %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="mb-5">
         <label for="name" class="mb-3 block text-base font-medium text-[#07074D]">
-          Title
+          Название
         </label>
         <%= f.input :title, label: false, required: true, class: "w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" %>
       </div>
       <div class="mb-5">
         <label for="email" class="mb-3 block text-base font-medium text-[#07074D]">
-          Genre
+          Жанр
         </label>
         <%= f.input :genre, required: true, html5: true, label: false, class: "w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" %>
       </div>
       <div class="mb-5">
         <label for="subject" class="mb-3 block text-base font-medium text-[#07074D]">
-         Description
+         Описание
         </label>
-        <%= f.input :description,  label: false, pattern: '[0-9]+', required: true, class: "w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" %>
+        <%= f.text_area :description,  label: false, pattern: '[0-9]+', required: true, class: "w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" %>
       </div>
       <div class="mb-5">
         <label for="message" class="mb-3 block text-base font-medium text-[#07074D]">
-          Year of publishing
+          Год издания
         </label>
         <%= f.input :year_of_publishing, required: true, label: false, html5: true, class: "w-full resize-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" %>
       </div>
       <div class="mb-5">
         <label for="message" class="mb-3 block text-base font-medium text-[#07074D]">
-          Year of publishing
+          Автор
         </label>
         <%= f.collection_select :author_id, Author.all, :id, :lastname, prompt: true, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
       </div>
       <div>
-        <%= f.button :submit, "Save", class: "hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-base font-semibold text-white outline-none" %>
-        <%= button_to "Delete", book_path(@collection), method: :delete, local: true, class: "hover:shadow-form rounded-md bg-[#DC143C] py-3 px-8 text-base font-semibold text-white outline-none"  %>
+        <%= f.button :submit, "Сохранить", class: "hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-base font-semibold text-white outline-none" %>
+        <%= button_to "Удалить", book_path(@collection), method: :delete, local: true, class: "hover:shadow-form rounded-md bg-[#DC143C] py-3 px-8 text-base font-semibold text-white outline-none"  %>
       </div>
     <% end %>
   </div>

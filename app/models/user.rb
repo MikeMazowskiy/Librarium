@@ -13,7 +13,8 @@ class User < ApplicationRecord
     user.uid = access_token.uid
     user.provider = access_token.provider
     user.save
-    profile = Profile.new(user: user, nickname: data['email'].split("@").first)
+    profile = Profile.where(user_id: user.id).first
+    profile ||= Profile.new(user: user, nickname: data['email'].split("@").first)
     profile.save
 
     user

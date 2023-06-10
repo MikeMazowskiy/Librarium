@@ -1,0 +1,15 @@
+<div class="max-w-2xl xl:w-1/5 px-2 mb-4">
+  <div class="bg-white shadow-md border border-gray-200 rounded-lg w-36 h-64 bg-gray-500 dark:border-gray-700">
+    <a href="<%= review_path(review) %>">
+      <% if review.book.image.present? %>
+        <%= image_tag review.book.image_url, class: "rounded-t-lg" %>
+      <% else %>
+        <img class="rounded-t-lg" src="https://m.media-amazon.com/images/I/61ibOuXLwcL._AC_UF1000,1000_QL80_.jpg" alt="Front of men&#039;s Basic Tee in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full">
+      <% end %>
+    </a>
+    <div class="mt-1 ml-2">
+      <h5 class="text-gray-500 font-bold text-xl tracking-tight mb-1 text-black"><%= review.book.title %></h5>
+<!--      <p class="font-normal text-gray-700 mb-3 dark:text-gray-400"><%#=truncate(review.text, length: 50, separator: ' ') %></p>-->
+    </div>
+  </div>
+</div>

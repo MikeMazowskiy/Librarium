@@ -3,20 +3,20 @@
     <%= simple_form_for @collection do |f| %>
       <div class="mb-5">
         <label for="name" class="mb-3 block text-base font-medium text-[#07074D]">
-          Title
+          Имя
         </label>
         <%= f.input :firstname, label: false, required: true, class: "w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" %>
       </div>
       <div class="mb-5">
         <label for="email" class="mb-3 block text-base font-medium text-[#07074D]">
-          Genre
+          Фамилия
         </label>
         <%= f.input :lastname, required: true, html5: true, label: false, class: "w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" %>
       </div>
       <div>
-        <%= f.button :submit, "Save", class: "hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-base font-semibold text-white outline-none" %>
+        <%= f.button :submit, "Добавить", class: "hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-base font-semibold text-white outline-none" %>
       </div>
     <% end %>
-    <%= button_to "Delete", author_path(@collection), method: :delete, local: true, class: "hover:shadow-form rounded-md bg-[#DC143C] mt-3 py-3 px-8 text-base font-semibold text-white outline-none"  %>
+    <%= button_to "Удалить", author_path(@collection), method: :delete, local: true, class: "hover:shadow-form rounded-md bg-[#DC143C] mt-3 py-3 px-8 text-base font-semibold text-white outline-none"  %>
   </div>
 </div>

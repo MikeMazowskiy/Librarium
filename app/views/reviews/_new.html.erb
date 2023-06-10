@@ -1,4 +1,4 @@
-<p><b>Reviews:</b></p>
+<p><b>Рецензии:</b></p>
 <div class="flex items-center p-12">
   <div class="w-full max-w">
     <% @collection.reviews.each do |review| %>
@@ -31,36 +31,38 @@
             </path>
           </svg>
         </div>
-        <%= link_to review.profile.nickname, profile_path(review.profile), class: 'font-bold hover:text-blue-600' %>
+        <div class="relative flex gap-4">
+          <% if review.profile.image.present? %>
+            <%= image_tag review.profile.image_url, class: "w-8 h-8 rounded-full" %>
+          <% else %>
+            <%= image_tag Avatarro.image(review.profile.nickname, color: '#fff', start: '#9CA3AF', finish: '#9CA3AF'), class: "w-8 h-8 rounded-full" %>
+          <% end %>
+          <div class="flex flex-col w-full">
+            <div class="flex flex-row justify-between">
+              <p class="relative text-xl whitespace-nowrap truncate overflow-hidden">
+                <%= link_to review.profile.nickname, profile_path(review.profile), class: 'font-bold hover:text-blue-600' %>
+              </p>
+              <a class="text-gray-500 text-xl" href="#"><i class="fa-solid fa-trash"></i></a>
+            </div>
+            <p class="text-gray-400 text-sm"><%= review.created_at.to_date %></p>
+          </div>
+        </div>
         <p class="mt-2 ml-2"><%= review.text %></p>
-
         <button type="button" class="mt-3 h-8 px-4 py-1 font-semibold rounded-xl bg-yellow-500 hover:bg-yellow-600 text-white text-center">
-          <%= link_to "Comment", review_path(review) %>
+          <%= link_to "Комментировать", review_path(review) %>
         </button>
       </div>
-<!--      <div class="card">-->
-<!--        <div class="row">-->
-<!--          <div class="user">-->
-<!--            <div class="avatar">-->
-              <%# if review.profile.avatar.attached? %>
-                <%#= link_to user_path(review.profile) do %>
-                  <%#= image_tag review.profile.avatar %>
-                <%# end %>
-              <%# end %>
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
     <% end %>
   </div>
 </div>
 <%= simple_form_for([@collection, @collection.reviews.build]) do |f| %>
   <div class="mb-5 mt-6">
     <label for="subject" class="mb-3 block text-base font-medium text-[#07074D]">
-      Description
+      Текст рецензии
     </label>
     <%= f.text_area :text,  label: false, required: true, class: "w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" %>
   </div>
   <div>
-    <%= f.button :submit, "Save", class: "hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-base font-semibold text-white outline-none" %>
+    <%= f.button :submit, "Сохранить", class: "hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-base font-semibold text-white outline-none" %>
   </div>
 <% end %>

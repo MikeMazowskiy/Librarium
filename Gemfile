@@ -17,6 +17,7 @@ group :development, :test do
   gem 'omniauth-google-oauth2'
   gem "omniauth-rails_csrf_protection", "~> 1.0"
   gem 'pundit'
+  gem 'carrierwave', '>= 3.0.0.beta', '< 4.0'
 end
 
 gem 'simple_form'
