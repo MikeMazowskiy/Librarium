@@ -1,14 +1,15 @@
-<p> Add book </p>
+<p class="font-bold"> Создание книги </p>
 
-<div>
-  <%= form_for @collection, url: books_path, local: true do |f| %>
-    <p> Title: <%= f.text_field :title %> </p>
-    <p> Genre: <%= f.text_field :genre %> </p>
-    <p> Description num: <%= f.text_field :description %> </p>
-    <p> Year of publishing: <%= f.text_field :year_of_publishing %> </p>
-    <p> Author: <%= f.collection_select :author_id, Author.all, :id, :lastname, prompt: true %> </p>
-    <div class="text-center">
-      <%= f.submit 'Create book', class: 'btn btn-success' %>
+<div class="max-w-md mt-4 bg-white rounded p-6 shadow-md flex flex-col items-start">
+  <%= simple_form_for @collection, url: books_path, html: { class: 'form' } do |f| %>
+    <%= f.file_field :image, class: 'form-input' %>
+    <%= f.input :title, input_html: { class: 'form-input' }, label_html: { class: 'block text-gray-700 text-sm font-bold mb-2' }, label: 'Title:' %>
+    <%= f.input :genre, input_html: { class: 'form-input' }, label_html: { class: 'block text-gray-700 text-sm font-bold mb-2' }, label: 'Genre:' %>
+    <%= f.input :description, input_html: { class: 'form-input' }, label_html: { class: 'block text-gray-700 text-sm font-bold mb-2' }, label: 'Description:' %>
+    <%= f.input :year_of_publishing, input_html: { class: 'form-input' }, label_html: { class: 'block text-gray-700 text-sm font-bold mb-2' }, label: 'Year of publishing:' %>
+    <%= f.association :author, collection: Author.all, label_method: :lastname, prompt: true, input_html: { class: 'form-select' }, label_html: { class: 'block text-gray-700 text-sm font-bold mb-2' }, label: 'Author:' %>
+    <div class="flex justify-start mt-4">
+      <%= f.button :submit, 'Создать книгу', class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' %>
     </div>
   <% end %>
 </div>

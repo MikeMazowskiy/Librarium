@@ -1,11 +1,16 @@
-<p> Add Author </p>
-
-<div>
+<div class="max-w-md bg-white rounded p-6 shadow-md">
+  <h2 class="text-lg font-semibold mb-4">Добавить автора</h2>
   <%= form_with model: @collection, method: :post, url: authors_path, local: true do |f| %>
-    <p> First name: <%= f.text_field :firstname %> </p>
-    <p> Last name: <%= f.text_field :lastname %> </p>
+    <div class="mb-4">
+      <%= f.label :firstname, class: "block text-sm font-medium text-gray-700" %>
+      <%= f.text_field :firstname, class: "mt-1 form-input block w-full" %>
+    </div>
+    <div class="mb-4">
+      <%= f.label :lastname, class: "block text-sm font-medium text-gray-700" %>
+      <%= f.text_field :lastname, class: "mt-1 form-input block w-full" %>
+    </div>
     <div class="text-center">
-      <%= f.submit 'Create author', class: 'btn btn-success' %>
+      <%= f.submit 'Добавить', class: 'px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 focus:outline-none focus:bg-indigo-700' %>
     </div>
   <% end %>
 </div>

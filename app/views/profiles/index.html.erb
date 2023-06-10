@@ -1,4 +1,4 @@
-<h1 class="text-3xl font-semibold text-gray-800 capitalize lg:text-4xl dark:text-dark">Profiles</h1>
+<h1 class="text-3xl font-semibold text-gray-800 capitalize lg:text-4xl dark:text-dark">Профили</h1>
 
 <div class="bg-white py-24 sm:py-32">
   <div class="mx-auto grid max-w-7xl gap-x-8 gap-y-20 px-6 lg:px-8 xl:grid-cols-3">
@@ -6,14 +6,14 @@
       <ul role="list" class="grid gap-x-8 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2">
         <li>
           <div class="flex items-center gap-x-4">
-            <% if profile.blank? %>
+            <% if profile.image.present? %>
               <%= image_tag profile.image_url, class: "w-12 h-12 rounded-full mr-2 sm:mr-2" %>
             <% else %>
               <%= image_tag Avatarro.image(profile.nickname, color: '#fff', start: '#9CA3AF', finish: '#9CA3AF'), class: "w-12 h-12 rounded-full mr-2 sm:mr-2", alt: profile.firstname %>
             <% end %>
             <div>
               <h3 class="text-base font-semibold leading-7 tracking-tight text-gray-900"><%= link_to(profile.nickname, profile_path(profile)) %></h3>
-              <p class="text-sm font-semibold leading-6 text-indigo-600">Co-Founder / CEO</p>
+              <p class="text-sm font-semibold leading-6 text-indigo-600">Читатель</p>
             </div>
           </div>
         </li>

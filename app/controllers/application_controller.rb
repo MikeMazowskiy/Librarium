@@ -102,5 +102,4 @@ class ApplicationController < ActionController::Base
     flash[:warning] = 'You are not authorized to perform this action.'
     redirect_to(request.referer || profile_path)
   end
-
 end

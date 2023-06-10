@@ -1,4 +1,6 @@
 class Profile < ApplicationRecord
+  mount_uploader :image, ImageUploader
+
   belongs_to :user
   has_many :lists
   has_many :reviews

@@ -1,4 +1,4 @@
-<h1 class="text-3xl font-semibold text-gray-800 capitalize lg:text-4xl dark:text-dark">Authors</h1>
+<h1 class="text-3xl font-semibold text-gray-800 capitalize lg:text-4xl dark:text-dark">Авторы</h1>
 
 <div class="bg-white py-24 sm:py-32">
   <div class="mx-auto grid max-w-7xl gap-x-8 gap-y-20 px-6 lg:px-8 xl:grid-cols-3">
@@ -6,9 +6,10 @@
       <ul role="list" class="grid gap-x-8 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2">
         <li>
           <div class="flex items-center gap-x-4">
+            <%= image_tag Avatarro.image(author.firstname, color: '#fff', start: '#9CA3AF', finish: '#9CA3AF'), class: "w-12 h-12 rounded-full mr-2 sm:mr-2", alt: author.firstname %>
             <div>
               <h3 class="text-base font-semibold leading-7 tracking-tight text-gray-900"><%= link_to(author.firstname, edit_author_path(author)) %></h3>
-              <p class="text-sm font-semibold leading-6 text-indigo-600">Co-Founder / CEO</p>
+              <p class="text-sm font-semibold leading-6 text-indigo-600">Автор</p>
             </div>
           </div>
         </li>
@@ -17,6 +18,6 @@
   </div>
   <br>
   <button class="hover:shadow-form rounded-md bg-[#3944BC] py-3 px-8 text-base font-semibold text-white outline-none">
-    <%= link_to "Add new author", new_author_path(@collection) %>
+    <%= link_to "Добавить автора", new_author_path(@collection) %>
   </button>
 </div>
