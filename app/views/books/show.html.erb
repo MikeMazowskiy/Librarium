@@ -11,27 +11,27 @@
       <div class="flex flex-col md:flex-row -mx-4">
         <div class="px-4">
             <div class="w-64 rounded-lg bg-gray-100 mb-4">
-              <% if @collection.image.present? %>
-                <%= image_tag @collection.image_url, class: "h-full w-full object-cover object-center lg:h-full lg:w-full" %>
+              <% if @object.image.present? %>
+                <%= image_tag @object.image_url, class: "h-full w-full object-cover object-center lg:h-full lg:w-full" %>
               <% else %>
                 <img src="https://m.media-amazon.com/images/I/61ibOuXLwcL._AC_UF1000,1000_QL80_.jpg" alt="Front of men&#039;s Basic Tee in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full">
               <% end %>
             </div>
         </div>
         <div class="md:flex-1 px-4">
-          <h2 class="mb-2 leading-tight tracking-tight font-bold text-gray-800 text-2xl md:text-3xl"><%= @collection.title %></h2>
-          <p class="text-gray-500 text-sm">Автор <a href="#" class="text-indigo-600 hover:underline"><%= @collection.author.firstname %></a></p>
+          <h2 class="mb-2 leading-tight tracking-tight font-bold text-gray-800 text-2xl md:text-3xl"><%= @object.title %></h2>
+          <p class="text-gray-500 text-sm">Автор <a href="#" class="text-indigo-600 hover:underline"><%= @object.author.firstname %></a></p>
 
           <div class="flex items-center space-x-4 my-4">
-            <%= @collection.genre %>
-            <%= @collection.year_of_publishing %>
+            <%= @object.genre %>
+            <%= @object.year_of_publishing %>
           </div>
 
-          <p class="text-gray-500"><%= @collection.description %></p>
+          <p class="text-gray-500"><%= @object.description %></p>
 
           <div class="flex py-4 space-x-4">
             <button type="button" class="h-14 px-6 py-2 font-semibold rounded-xl bg-green-500 hover:bg-indigo-500 text-white">
-              <%= link_to "Редактировать", edit_book_path(@collection) %>
+              <%= link_to "Редактировать", edit_book_path(@object) %>
             </button>
           </div>
         </div>

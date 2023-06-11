@@ -1,0 +1,14 @@
+<div class="h-full p-8">
+  <p class="text-2xl"><%= @object.name %></p>
+  <div class="flex-1 bg-white rounded-lg shadow-xl mt-4 p-8">
+    <h4 class="text-xl text-gray-900 font-bold">Книги</h4>
+    <button class="hover:shadow-form rounded-md bg-[#3944BC] py-3 px-8 text-base font-semibold text-white outline-none">
+      <%= link_to "Добавить кингу в список", edit_list_path(@object) %>
+    </button>
+    <div class="flex flex-wrap -mx-4">
+    <% @object.books.each do |book| %>
+      <%= render "lists/book", book: book %>
+    <% end %>
+    </div>
+  </div>
+</div>

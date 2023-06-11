@@ -1,11 +1,11 @@
 class TagsController < ApplicationController
   def create
-    collection = Tag.new
-    collection.update permitted_params
+    object = Tag.new
+    object.update permitted_params
   end
 
   def destroy
-    collection = Tag.find(params[:id])
-    collection.delete
+    object = Tag.find(params[:id])
+    object.delete
   end
 end

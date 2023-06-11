@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   def show
-    @collection = Book.find(params[:id])
+    @object = Book.find(params[:id])
   end
 
   private

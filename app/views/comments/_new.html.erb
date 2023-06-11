@@ -1,7 +1,7 @@
 <p class="text-gray-700 font-medium "><b>Комментарии:</b></p>
 <div class="flex items-center justify-center p-2">
   <div class="mx-auto w-full p-4">
-    <% @collection.comments.each do |comment| %>
+    <% @object.comments.each do |comment| %>
       <div class="max-w-2xl mx">
         <div class="flex items-center">
           <div class="relative flex gap-4">
@@ -33,7 +33,7 @@
 </div>
 </div>
 
-<%= simple_form_for([@collection, @collection.comments.build]) do |f| %>
+<%= simple_form_for([@object, @object.comments.build]) do |f| %>
   <div class="mb-5 mt-6">
     <label for="subject" class="mb-3 block text-base font-medium text-[#07074D]">
       Текст комментария
