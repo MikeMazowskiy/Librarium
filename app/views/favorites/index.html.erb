@@ -1,0 +1,9 @@
+<h1>Followers</h1>
+
+<ul>
+  <% @collections.each do |favorite| %>
+    <li>
+      <%= link_to(favorite.email, profile_path(favorite)) %>
+    </li>
+  <% end %>
+</ul>

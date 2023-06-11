@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_11_082900) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_11_154540) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,11 +42,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_11_082900) do
     t.index ["profile_id"], name: "index_books_profiles_on_profile_id"
   end
 
-  create_table "books_tags", id: false, force: :cascade do |t|
-    t.uuid "tag_id", null: false
-    t.uuid "book_id", null: false
-  end
-
   create_table "comments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.text "text"
     t.uuid "review_id", null: false
@@ -55,6 +50,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_11_082900) do
     t.uuid "profile_id", null: false
     t.index ["profile_id"], name: "index_comments_on_profile_id"
     t.index ["review_id"], name: "index_comments_on_review_id"
+  end
+
+  create_table "favorites", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "profile_id"
+    t.uuid "favorite_profile_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["favorite_profile_id"], name: "index_favorites_on_favorite_profile_id"
+    t.index ["profile_id"], name: "index_favorites_on_profile_id"
   end
 
   create_table "lists", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
