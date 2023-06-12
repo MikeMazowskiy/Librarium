@@ -4,9 +4,9 @@ class ProfilesController < AuthenticatedController
 
   def show
     if params[:id]
-      @collection = Profile.find(params[:id])
+      @object = Profile.find(params[:id])
     else
-      @collection = current_user.profile
+      @object = current_user.profile
     end
   end
 
@@ -25,10 +25,10 @@ class ProfilesController < AuthenticatedController
   end
 
   def authenticated_user?
-    authorize @collection
+    authorize @object
   end
 
   def load_profile
-    @collection = Profile.find(params[:id])
+    @object = Profile.find(params[:id])
   end
 end

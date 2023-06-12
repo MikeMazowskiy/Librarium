@@ -4,10 +4,10 @@
       <img src="https://hcommons.org/app/uploads/sites/1001669/2022/10/yin-adapted-2-scaled.jpg" class="w-full h-full rounded-tl-lg rounded-tr-lg">
     </div>
     <div class="flex flex-col items-center -mt-20">
-      <% if @collection.image.present? %>
+      <% if @object.image.present? %>
         <div class="w-36 h-36 rounded-full relative -mt-20 mb-1">
           <label for='image-input'>
-            <%= image_tag @collection.image_url, class: "w-36 h-36 rounded-full overflow-hidden -mt-18 mb-3" %>
+            <%= image_tag @object.image_url, class: "w-36 h-36 rounded-full overflow-hidden -mt-18 mb-3" %>
             <div class="opacity-0 hover:opacity-100 duration-300 cursor-pointer	">
               <div class="absolute inset-0 z-10 flex justify-center items-center text-white font-semibold bg-gray-900 bg-opacity-20 rounded-full">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -20,7 +20,7 @@
       <% else %>
         <div class="w-36 h-36 rounded-full relative -mt-18 mb-1">
           <label for='image-input'>
-            <%= image_tag Avatarro.image(@collection.nickname, color: '#fff', start: '#9CA3AF', finish: '#9CA3AF'), class: "w-36 h-36 rounded-full overflow-hidden -mt-18 mb-3" %>
+            <%= image_tag Avatarro.image(@object.nickname, color: '#fff', start: '#9CA3AF', finish: '#9CA3AF'), class: "w-36 h-36 rounded-full overflow-hidden -mt-18 mb-3" %>
             <div class="opacity-0 hover:opacity-100 duration-300 cursor-pointer	">
               <div class="absolute inset-0 z-10 flex justify-center items-center text-white font-semibold bg-gray-900 bg-opacity-20 rounded-full">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -32,12 +32,12 @@
         </div>
       <% end %>
       <div class="flex items-center space-x-2 mt-2">
-        <p class="text-2xl"><%= @collection.nickname %></p>
+        <p class="text-2xl"><%= @object.nickname %></p>
       </div>
     </div>
     <div class="flex-1 flex flex-col items-center lg:items-end justify-end px-8 mt-2">
       <div class="flex items-center space-x-4 mt-2">
-        <% unless policy(@collection).update? %>
+        <% unless policy(@object).update? %>
           <button class="flex items-center bg-pink-600 hover:bg-pink-700 text-gray-100 px-4 py-2 rounded text-sm space-x-2 transition duration-100">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
               <path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z"></path>
@@ -45,9 +45,9 @@
             <span>Добавить в избранное</span>
           </button>
         <% end %>
-        <% if policy(@collection).update? %>
+        <% if policy(@object).update? %>
           <button class="flex items-center bg-green-600 hover:bg-green-700 text-gray-100 px-4 py-2 rounded text-sm space-x-2 transition duration-100">
-              <%= link_to "Редактировть", edit_profile_path(@collection) %>
+              <%= link_to "Редактировть", edit_profile_path(@object) %>
           </button>
         <% end %>
       </div>
@@ -61,15 +61,15 @@
         <ul class="mt-2 text-gray-700">
           <li class="flex border-y py-2">
             <span class="font-bold w-24">Имя:</span>
-            <span class="text-gray-700"><%= @collection.firstname %></span>
+            <span class="text-gray-700"><%= @object.firstname %></span>
           </li>
           <li class="flex border-b py-2">
             <span class="font-bold w-24">Фамилия:</span>
-            <span class="text-gray-700"><%= @collection.lastname %></span>
+            <span class="text-gray-700"><%= @object.lastname %></span>
           </li>
           <li class="flex border-b py-2">
             <span class="font-bold w-24">Возраст:</span>
-            <span class="text-gray-700"><%= @collection.age %></span>
+            <span class="text-gray-700"><%= @object.age %></span>
           </li>
 <!--          <li class="flex items-center border-b py-2 space-x-2">-->
 <!--            <span class="font-bold w-24">Elsewhere:</span>-->
@@ -97,7 +97,7 @@
       <div class="flex-1 bg-white rounded-lg shadow-xl mt-4 p-8">
         <h4 class="text-xl text-gray-900 font-bold">Рецензии</h4>
         <div class="flex flex-wrap -mx-4">
-        <% @collection.reviews.each do |review| %>
+        <% @object.reviews.each do |review| %>
           <%= render "layouts/review_card", review: review %>
         <% end %>
         </div>

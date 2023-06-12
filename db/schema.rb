@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_09_031956) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_11_082900) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -29,10 +29,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_09_031956) do
     t.datetime "updated_at", null: false
     t.uuid "author_id"
     t.string "description"
-    t.uuid "list_id"
     t.string "image"
     t.index ["author_id"], name: "index_books_on_author_id"
-    t.index ["list_id"], name: "index_books_on_list_id"
   end
 
   create_table "books_profiles", force: :cascade do |t|
@@ -65,6 +63,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_09_031956) do
     t.datetime "updated_at", null: false
     t.uuid "profile_id"
     t.index ["profile_id"], name: "index_lists_on_profile_id"
+  end
+
+  create_table "lists_books", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "book_id", null: false
+    t.uuid "list_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_lists_books_on_book_id"
+    t.index ["list_id"], name: "index_lists_books_on_list_id"
   end
 
   create_table "profiles", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -110,12 +117,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_09_031956) do
   end
 
   add_foreign_key "books", "authors"
-  add_foreign_key "books", "lists"
   add_foreign_key "books_profiles", "books", on_delete: :cascade
   add_foreign_key "books_profiles", "profiles", on_delete: :cascade
   add_foreign_key "comments", "profiles"
   add_foreign_key "comments", "reviews"
   add_foreign_key "lists", "profiles"
+  add_foreign_key "lists_books", "books"
+  add_foreign_key "lists_books", "lists"
   add_foreign_key "reviews", "books"
   add_foreign_key "reviews", "profiles"
 end

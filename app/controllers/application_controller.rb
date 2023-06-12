@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   include Pundit
 
+  LIST = "List".freeze
+
   rescue_from Pundit::NotAuthorizedError, with: :not_allowed_to_update
 
   def index
@@ -12,7 +14,11 @@ class ApplicationController < ActionController::Base
   end
 
   def new
-    @collection = model_class.new
+    if class_name == LIST
+      raise "Not implemented error"
+    else
+      @object = model_class.new
+    end
   end
 
   def show
@@ -20,44 +26,52 @@ class ApplicationController < ActionController::Base
   end
 
   def edit
-    if class_name == "User" || class_name == "Tag"
+    if %w[User Tag].include?(class_name)
       raise "Not implemented error"
     else
-      @collection = model_class.find(params[:id])
+      @object = model_class.find(params[:id])
     end
   end
 
   def create
-    collection = model_class.new permitted_params
-
-    if collection.save
-      redirect_to resources_path
+    if class_name == LIST
+      raise "Not implemented error"
     else
-      redirect_to resources_path
+      object = model_class.new permitted_params
+
+      if object.save
+        redirect_to resources_path
+      else
+        redirect_to resources_path
+      end
     end
   end
 
   def update
-    if class_name == "User" || class_name == "Tag"
+    if %w[User Tag].include?(class_name)
       raise "Not implemented error"
     else
-      collection = model_class.find(params[:id])
+      object = model_class.find(params[:id])
     end
 
-    if collection.update permitted_params
-      redirect_to resource_path, notice: "#{class_name} was successfully updated."
+    if object.update permitted_params
+      redirect_to resource_path, flash[:notice] = "#{class_name} was successfully updated."
     else
-      redirect_to edit_resource_path, notice: "Something went wrong."
+      redirect_to edit_resource_path, flash[:error] = "Something went wrong."
     end
   end
 
   def destroy
-    collection = model_class.find(params[:id])
-
-    if collection.destroy
-      redirect_to resources_path
+    if class_name == LIST
+      raise "Not implemented error"
     else
-      redirect_to edit_resource_path
+      object = model_class.find(params[:id])
+
+      if object.destroy
+        redirect_to resources_path, flash[:notice] = "#{class_name} was successfully destroyed."
+      else
+        redirect_to edit_resource_path, flash[:error] = "Something went wrong."
+      end
     end
   end
 

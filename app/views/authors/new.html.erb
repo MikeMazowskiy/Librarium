@@ -1,6 +1,6 @@
 <div class="max-w-md bg-white rounded p-6 shadow-md">
   <h2 class="text-lg font-semibold mb-4">Добавить автора</h2>
-  <%= form_with model: @collection, method: :post, url: authors_path, local: true do |f| %>
+  <%= form_with model: @object, method: :post, url: authors_path, local: true do |f| %>
     <div class="mb-4">
       <%= f.label :firstname, class: "block text-sm font-medium text-gray-700" %>
       <%= f.text_field :firstname, class: "mt-1 form-input block w-full" %>

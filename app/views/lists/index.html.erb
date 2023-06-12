@@ -1,0 +1,22 @@
+<div class="mx-auto w-full flex justify-center">
+  <div class="bg-gray-100/80 flex-1 flex flex-col space-y-5 lg:space-y-0 lg:flex-row lg:space-x-10 w-full sm:p-6 sm:my-2 sm:mx-4 sm:rounded-2xl">
+    <div class="flex-1 px-2 sm:px-0">
+      <div class="flex justify-between items-center">
+        <h3 class="text-3xl font-extralight text-black/100">Списки для чтения</h3>
+        <div class="inline-flex items-center space-x-2">
+        </div>
+      </div>
+      <div class="mb-10 sm:mb-0 mt-10 columns-3 h-full">
+      <% @collections.each do |list| %>
+          <a href="<%= list_path(list) %>">
+            <div class="group bg-amber-100 py-10 sm:py-20 px-4 flex flex-col space-y-2 items-center justify-center cursor-pointer rounded-md hover:bg-amber-100/80 hover:smooth-hover">
+              <%= image_tag image(list), class: "w-64 h-64 object-cover object-center rounded-full" %>
+              <h4 class="font-extralight text-black/100 text-2xl font-bold capitalize text-center"><%= list.name %></h4>
+              <p class="font-extralight text-black/50"><%= list.books.count %> <%=list.books.count == 1 ? "Книга" : "Книги"%></p>
+            </div>
+          </a>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
