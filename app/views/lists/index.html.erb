@@ -7,7 +7,7 @@
         </div>
       </div>
       <div class="mb-10 sm:mb-0 mt-10 columns-3 h-full">
-      <% @collections.each do |list| %>
+      <% @collection.each do |list| %>
           <a href="<%= list_path(list) %>">
             <div class="group bg-amber-100 py-10 sm:py-20 px-4 flex flex-col space-y-2 items-center justify-center cursor-pointer rounded-md hover:bg-amber-100/80 hover:smooth-hover">
               <%= image_tag image(list), class: "w-64 h-64 object-cover object-center rounded-full" %>

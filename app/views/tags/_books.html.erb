@@ -2,12 +2,12 @@
   <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
     <h2 class="text-2xl font-bold tracking-tight text-gray-900">Книги</h2>
     <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-      <% @collection.each do |book| %>
+      <% @collection.each do |object| %>
         <div class="group relative">
           <div class="min-h-80 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
-            <a href="<%= book_path(book) %>">
-              <% if book.image.present? %>
-                <%= image_tag book.image_url, class: "h-full w-full object-cover object-center lg:h-full lg:w-full" %>
+            <a href="<%= book_path(object) %>">
+              <% if object.image.present? %>
+                <%= image_tag object.image_url, class: "h-full w-full object-cover object-center lg:h-full lg:w-full" %>
               <% else %>
                 <img src="https://m.media-amazon.com/images/I/61ibOuXLwcL._AC_UF1000,1000_QL80_.jpg" alt="Front of men's Basic Tee in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full">
               <% end %>
@@ -19,16 +19,13 @@
             </a>
           </div>
           <div class="mt-4">
-            <h3 class="text text-black-700">Название: <%= book.title %></h3>
-            <p class="text-sm text-black-700">Жанр: <%= book.genre %></p>
-            <p class="text-gray-500 text-sm mt-2">Описание: <%= truncate(book.description, length: 150) %></p>
+            <h3 class="text text-black-700">Название: <%= object.title %></h3>
+            <p class="text-sm text-black-700">Жанр: <%= object.genre %></p>
+            <p class="text-gray-500 text-sm mt-2">Описание: <%= truncate(object.description, length: 150) %></p>
           </div>
         </div>
       <% end %>
     </div>
     <br>
-    <button class="hover:shadow-form rounded-md bg-[#3944BC] py-3 px-8 text-base font-semibold text-white outline-none">
-      <%= link_to "Добавить новую книгу", new_book_path(@object) %>
-    </button>
   </div>
 </div>

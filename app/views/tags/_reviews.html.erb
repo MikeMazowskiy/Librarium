@@ -1,7 +1,7 @@
 <p><b>Рецензии:</b></p>
 <div class="flex items-center p-12">
   <div class="w-full max-w">
-    <% @object.reviews.each do |review| %>
+    <% @collection.each do |review| %>
       <div class="max-w mx">
         <div class="flex items-center">
           <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -63,14 +63,3 @@
     <% end %>
   </div>
 </div>
-<%= simple_form_for([@object, @object.reviews.build]) do |f| %>
-  <div class="mb-5 mt-6">
-    <label for="subject" class="mb-3 block text-base font-medium text-[#07074D]">
-      Текст рецензии
-    </label>
-    <%= f.text_area :text,  label: false, required: true, class: "w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" %>
-  </div>
-  <div>
-    <%= f.button :submit, "Сохранить", class: "hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-base font-semibold text-white outline-none" %>
-  </div>
-<% end %>

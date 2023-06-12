@@ -1,7 +1,7 @@
 class FavoritesController < ApplicationController
   def index
     current_profile = Profile.find(params[:profile_id])
-    @collections = current_profile.favorites
+    @collection = current_profile.favorites
   end
 
   def create

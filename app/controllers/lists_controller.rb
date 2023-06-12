@@ -1,7 +1,7 @@
 class ListsController < ApplicationController
 
   def index
-    @collections = Profile.find_by(user_id: current_user.id).lists
+    @collection = Profile.find_by(user_id: current_user.id).lists
   end
 
   def show
