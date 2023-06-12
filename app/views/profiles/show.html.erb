@@ -39,16 +39,16 @@
       <div class="flex items-center space-x-4 mt-2">
         <% if policy(@object).update? %>
           <button class="flex items-center bg-green-600 hover:bg-green-700 text-gray-100 px-4 py-2 rounded text-sm space-x-2 transition duration-100">
-            <%= link_to "Редактировть", edit_profile_path(@collection) %>
+            <%= link_to "Редактировть", edit_profile_path(@object) %>
           </button>
         <% else %>
           <% if favorite_check(@object, current_user)%>
-            <%= button_to "Удалить из избранного", favorite_path(favorite_profile_id: @collection.id), method: :delete, class: "flex items-center bg-pink-600 hover:bg-pink-700 text-gray-100 px-4 py-2 rounded text-sm space-x-2 transition duration-100" %>
+            <%= button_to "Удалить из избранного", favorite_path(favorite_profile_id: @object.id), method: :delete, class: "flex items-center bg-pink-600 hover:bg-pink-700 text-gray-100 px-4 py-2 rounded text-sm space-x-2 transition duration-100" %>
           <% else %>
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
               <path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z"></path>
             </svg>
-            <%= button_to "Добавить в избранное", create_favorite_path, params: { favorite_profile_id: @collection.id }, remote: true, method: :post, id: 'add-favorite-link', class: "flex items-center bg-pink-600 hover:bg-pink-700 text-gray-100 px-4 py-2 rounded text-sm space-x-2 transition duration-100" %>
+            <%= button_to "Добавить в избранное", create_favorite_path, params: { favorite_profile_id: @object.id }, remote: true, method: :post, id: 'add-favorite-link', class: "flex items-center bg-pink-600 hover:bg-pink-700 text-gray-100 px-4 py-2 rounded text-sm space-x-2 transition duration-100" %>
           <% end %>
         <% end %>
       </div>
