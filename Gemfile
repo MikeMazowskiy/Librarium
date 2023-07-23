@@ -18,6 +18,11 @@ group :development, :test do
   gem "omniauth-rails_csrf_protection", "~> 1.0"
   gem 'pundit'
   gem 'carrierwave', '>= 3.0.0.beta', '< 4.0'
+  gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'ed25519', '>= 1.2', '< 2.0'
+  gem 'bcrypt_pbkdf', '>= 1.0', '< 2.0'
 end
 
 gem 'simple_form'
