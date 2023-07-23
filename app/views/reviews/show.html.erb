@@ -44,7 +44,15 @@
           <p class="text-gray-400 text-sm"><%= @object.created_at.to_date %></p>
         </div>
       </div>
-      <p class="mt-2 ml-2"><%= @object.text %></p>
+      <p class="mt-2 ml-2">
+        <% @object.text.split(' ').each do |word| %>
+          <% if word.start_with?('#') %>
+            <%= link_to word, tags_path(query: word, entity: @object.class) %>
+          <% else %>
+            <%= word %>
+          <% end %>
+        <% end %>
+      </p>
 
       <button type="button" class="mt-4 h-8 px-4 py-1 font-semibold rounded-xl bg-green-500 hover:bg-green-600 text-white text-center">
         <%= link_to "Редактировать", edit_review_path(@object) %>

@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
     if %w[User, Comment].include?(class_name)
       raise "Not implemented error"
     else
-      @collections = model_class.includes(included_collections).all
+      @collection = model_class.includes(included_collections).all
     end
   end
 

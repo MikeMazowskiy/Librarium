@@ -27,7 +27,15 @@
             <%= @object.year_of_publishing %>
           </div>
 
-          <p class="text-gray-500"><%= @object.description %></p>
+          <p class="text-gray-500">
+            <% @object.description.split(' ').each do |word| %>
+              <% if word.start_with?('#') %>
+                <%= link_to word, tags_path(query: word, entity: @object.class) %>
+              <% else %>
+                <%= word %>
+              <% end %>
+            <% end %>
+          </p>
 
           <div class="flex py-4 space-x-4">
             <button type="button" class="h-14 px-6 py-2 font-semibold rounded-xl bg-green-500 hover:bg-indigo-500 text-white">
