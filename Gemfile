@@ -12,12 +12,6 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'shoulda-matchers', '~> 5.0'
   gem 'pry-nav'
-  gem 'devise'
-  gem 'dotenv-rails'
-  gem 'omniauth-google-oauth2'
-  gem "omniauth-rails_csrf_protection", "~> 1.0"
-  gem 'pundit'
-  gem 'carrierwave', '>= 3.0.0.beta', '< 4.0'
   gem 'capistrano'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
@@ -25,6 +19,12 @@ group :development, :test do
   gem 'bcrypt_pbkdf', '>= 1.0', '< 2.0'
 end
 
+gem 'devise'
+gem 'dotenv-rails'
+gem 'omniauth-google-oauth2'
+gem "omniauth-rails_csrf_protection", "~> 1.0"
+gem 'pundit'
+gem 'carrierwave', '>= 3.0.0.beta', '< 4.0'
 gem 'simple_form'
 gem "tailwindcss-rails", "~> 2.0"
 gem 'webpacker', '~> 5.0'
