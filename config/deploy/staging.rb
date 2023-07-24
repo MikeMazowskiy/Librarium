@@ -7,7 +7,6 @@ server "192.168.3.7", user: 'deploy', roles: %w[app db web], primary: 'true'
 set :branch, 'master'
 set :stage, :staging
 set :rails_env, :staging
-set :linked_files, fetch(:linked_files, []).push("config/master.key")
 
 # role-based syntax
 # ==================
