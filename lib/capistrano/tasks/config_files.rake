@@ -6,7 +6,6 @@ namespace :config_files do
 
       upload! StringIO.new(File.read('config/database.yml')), "#{shared_path}/config/database.yml"
       upload! StringIO.new(File.read('config/master.key')), "#{shared_path}/config/master.key"
-      upload! StringIO.new(File.read('package.json')), "#{shared_path}/package.json"
     end
   end
 end
