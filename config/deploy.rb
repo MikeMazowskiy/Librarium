@@ -31,6 +31,12 @@ append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/pack
 # Default value for local_user is ENV['USER']
 # set :local_user, -> { `git config user.name`.chomp }
 
+set :puma_preload_app, false
+set :puma_init_active_record, true
+set :puma_workers, 3
+set :puma_systemctl_user, fetch(:deploy_user)
+set :puma_enable_lingering, true
+
 # Default value for keep_releases is 5
 set :keep_releases, 3
 

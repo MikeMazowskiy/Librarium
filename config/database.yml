@@ -61,7 +61,7 @@ test:
 
 staging:
   <<: *default
-  database: librarium_production
+  database: librarium_staging
   username: <%= ENV["PG_DATABASE_LOGIN"] %>
   password: <%= ENV["PG_DATABASE_PASSWORD"] %>
 # As with config/credentials.yml, you never want to store sensitive information,
