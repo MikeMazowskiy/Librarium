@@ -29,7 +29,6 @@ gem 'pundit'
 gem 'carrierwave', '>= 3.0.0.beta', '< 4.0'
 gem 'simple_form'
 gem "tailwindcss-rails", "~> 2.0"
-gem 'webpacker', '~> 5.0'
 gem 'avatarro'
 gem 'high_voltage', '~> 3.1'
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
