@@ -25,3 +25,9 @@ environment.config.delete('node.child_process')
 environment.config.merge(customConfig);
 
 module.exports = environment
+
+const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
+
+plugins: [
+    new NodePolyfillPlugin(),
+]
