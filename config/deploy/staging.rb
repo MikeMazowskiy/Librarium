@@ -2,8 +2,7 @@
 # ======================
 # Defines a single server with a list of roles and multiple properties.
 # You can define all roles on a single server, or split them:
-
-server "192.168.3.7", user: 'deploy', roles: %w[app db web], primary: 'true'
+server ENV["APP_IP"], port: ENV["APP_PORT"], user: 'deploy', roles: %w[app db web], primary: 'true'
 set :branch, 'master'
 set :stage, :staging
 set :rails_env, :staging
